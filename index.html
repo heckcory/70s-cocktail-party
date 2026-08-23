@@ -18,6 +18,7 @@
     }
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Georgia, 'Times New Roman', serif;
@@ -49,12 +50,28 @@
       position: absolute;
       width: 340px;
       height: 110px;
-      background: linear-gradient(90deg, var(--orange) 0 25%, #ef7719 25% 50%, var(--mustard) 50% 75%, var(--brown) 75% 100%);
+      background: linear-gradient(
+        90deg,
+        var(--orange) 0 25%,
+        #ef7719 25% 50%,
+        var(--mustard) 50% 75%,
+        var(--brown) 75% 100%
+      );
       border-radius: 60px;
       z-index: 0;
     }
-    .poster::before { top: -40px; left: -120px; transform: rotate(-3deg); }
-    .poster::after { bottom: 30px; right: -140px; transform: rotate(7deg); }
+
+    .poster::before {
+      top: -40px;
+      left: -120px;
+      transform: rotate(-3deg);
+    }
+
+    .poster::after {
+      bottom: 30px;
+      right: -140px;
+      transform: rotate(7deg);
+    }
 
     .inner {
       position: relative;
@@ -65,7 +82,14 @@
       padding: 34px 26px 28px;
     }
 
-    .eyebrow { text-align: center; letter-spacing: .16em; font-weight: 700; color: var(--rust); text-transform: uppercase; }
+    .eyebrow {
+      text-align: center;
+      letter-spacing: .16em;
+      font-weight: 700;
+      color: var(--rust);
+      text-transform: uppercase;
+    }
+
     h1 {
       text-align: center;
       font-family: 'Trebuchet MS', Arial, sans-serif;
@@ -77,7 +101,11 @@
       color: var(--brown);
       text-shadow: 3px 3px 0 var(--gold);
     }
-    h1 span { color: var(--orange); display: block; }
+
+    h1 span {
+      color: var(--orange);
+      display: block;
+    }
 
     .details {
       text-align: center;
@@ -88,7 +116,12 @@
       line-height: 1.25;
       margin-bottom: 22px;
     }
-    .details .address { font-size: .62em; letter-spacing: .04em; margin-top: 8px; }
+
+    .details .address {
+      font-size: .62em;
+      letter-spacing: .04em;
+      margin-top: 8px;
+    }
 
     .intro {
       max-width: 700px;
@@ -112,7 +145,17 @@
       text-transform: uppercase;
       letter-spacing: .04em;
     }
-    .callout small { display:block; margin-top:6px; text-transform:none; letter-spacing:0; font-weight:600; font-family: Georgia, serif; font-style: italic; color:#f1c76f; }
+
+    .callout small {
+      display: block;
+      margin-top: 6px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 600;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: #f1c76f;
+    }
 
     .card {
       max-width: 760px;
@@ -133,8 +176,16 @@
       letter-spacing: .02em;
     }
 
-    label { font-weight: 700; display:block; margin: 16px 0 8px; }
-    input, select, textarea, button {
+    label {
+      font-weight: 700;
+      display: block;
+      margin: 16px 0 8px;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
       width: 100%;
       font: inherit;
       border-radius: 12px;
@@ -143,7 +194,11 @@
       background: #fffaf0;
       color: var(--ink);
     }
-    textarea { min-height: 100px; resize: vertical; }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
 
     .choice-row {
       display: grid;
@@ -151,6 +206,7 @@
       gap: 12px;
       margin-top: 10px;
     }
+
     .choice {
       border: 2px solid #7d4b2d;
       border-radius: 14px;
@@ -159,11 +215,25 @@
       cursor: pointer;
       font-weight: 700;
     }
-    .choice input { width: auto; margin-right: 8px; }
 
-    .hidden { display:none; }
-    .hint { font-size: 14px; color:#6d4a37; margin-top:6px; }
-    .error { color:#8b1e11; font-weight:700; margin-top:10px; }
+    .choice input {
+      width: auto;
+      margin-right: 8px;
+    }
+
+    .hidden { display: none; }
+
+    .hint {
+      font-size: 14px;
+      color: #6d4a37;
+      margin-top: 6px;
+    }
+
+    .error {
+      color: #8b1e11;
+      font-weight: 700;
+      margin-top: 10px;
+    }
 
     button {
       margin-top: 22px;
@@ -176,58 +246,75 @@
       letter-spacing: .04em;
       cursor: pointer;
     }
-    button:hover { filter: brightness(.96); }
+
+    button:hover {
+      filter: brightness(.96);
+    }
 
     .attendees {
-      display:grid;
-      gap:12px;
+      display: grid;
+      gap: 12px;
     }
+
     .attendee {
       border-left: 8px solid var(--mustard);
       padding: 12px 14px;
-      background:#fff8eb;
+      background: #fff8eb;
       border-radius: 8px;
     }
-    .attendee strong { display:block; font-family:Arial, sans-serif; }
-    .dish-title { color:var(--burnt); font-style:italic; }
+
+    .attendee strong {
+      display: block;
+      font-family: Arial, sans-serif;
+    }
+
+    .dish-title {
+      color: var(--burnt);
+      font-style: italic;
+    }
 
     .success {
       border: 3px solid #6a7f2c;
-      background:#f2f3d9;
-      padding:18px;
-      border-radius:14px;
-      font-weight:700;
-      margin-top:18px;
+      background: #f2f3d9;
+      padding: 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      margin-top: 18px;
     }
 
     button[type="submit"] {
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      min-height:48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
     }
 
     button[type="submit"]:disabled {
-      cursor:wait;
-      opacity:.8;
+      cursor: wait;
+      opacity: .8;
     }
 
     .submit-spinner {
-      width:18px;
-      height:18px;
-      border:3px solid rgba(255,255,255,.45);
-      border-top-color:#fff;
-      border-radius:50%;
-      animation:spin .7s linear infinite;
-      flex:0 0 auto;
+      width: 18px;
+      height: 18px;
+      border: 3px solid rgba(255,255,255,.45);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      flex: 0 0 auto;
     }
 
     @keyframes spin {
-      to { transform:rotate(360deg); }
+      to { transform: rotate(360deg); }
     }
 
-    .footer-note { text-align:center; font-size:13px; color:#6e4f3f; margin-top:22px; }
+    .footer-note {
+      text-align: center;
+      font-size: 13px;
+      color: #6e4f3f;
+      margin-top: 22px;
+    }
 
     @media (max-width: 640px) {
       .inner { padding: 28px 16px 22px; }
@@ -245,7 +332,11 @@
       padding: 20px;
       z-index: 9999;
     }
-    .modal-backdrop.hidden { display: none; }
+
+    .modal-backdrop.hidden {
+      display: none;
+    }
+
     .rsvp-modal {
       width: min(92vw, 460px);
       background: #fff6dd;
@@ -255,12 +346,18 @@
       text-align: center;
       box-shadow: 0 22px 70px rgba(42,24,15,.35);
     }
+
     .rsvp-modal h3 {
       margin: 0 0 10px;
       font-size: 1.75rem;
       color: var(--burnt);
     }
-    .rsvp-modal p { margin: 8px 0 18px; line-height: 1.45; }
+
+    .rsvp-modal p {
+      margin: 8px 0 18px;
+      line-height: 1.45;
+    }
+
     .rsvp-modal button {
       border: 0;
       border-radius: 999px;
@@ -282,7 +379,10 @@
 
         <div class="details">
           November 14 • 5:30 PM
-          <div class="address">2513 Somerset Drive<br>Nashville, TN 37217</div>
+          <div class="address">
+            2513 Somerset Drive<br>
+            Nashville, TN 37217
+          </div>
         </div>
 
         <div class="intro">
@@ -301,39 +401,71 @@
           <input id="guestName" name="guestName" type="text" required />
 
           <label>Will you be joining us?</label>
+
           <div class="choice-row">
-            <label class="choice"><input type="radio" name="attending" value="yes" required /> Far out! I’ll be there.</label>
-            <label class="choice"><input type="radio" name="attending" value="no" required /> Bummer. Can’t make it.</label>
+            <label class="choice">
+              <input type="radio" name="attending" value="yes" required />
+              Far out! I’ll be there.
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="attending" value="no" required />
+              Bummer. Can’t make it.
+            </label>
           </div>
 
           <div id="attendingFields" class="hidden">
             <label for="appetizer">Choose your appetizer</label>
+
             <select id="appetizer" name="appetizer">
               <option value="">Select one...</option>
             </select>
-            <div class="hint">Claimed appetizers disappear from this list after someone RSVPs.</div>
+
+            <div class="hint">
+              Claimed appetizers disappear from this list after someone RSVPs.
+            </div>
 
             <div id="customDishFields" class="hidden">
               <label for="customDish">What are you bringing?</label>
-              <input id="customDish" name="customDish" type="text" placeholder="e.g. Rumaki" />
+              <input
+                id="customDish"
+                name="customDish"
+                type="text"
+                placeholder="e.g. Rumaki"
+              />
             </div>
 
             <label for="dishTitle">Give your dish a groovy title</label>
-            <input id="dishTitle" name="dishTitle" type="text" placeholder="Choose an appetizer for a suggested title" />
-            <div class="hint">We’ll suggest one for you — keep it or make it your own.</div>
+
+            <input
+              id="dishTitle"
+              name="dishTitle"
+              type="text"
+              placeholder="Choose an appetizer for a suggested title"
+            />
+
+            <div class="hint">
+              We’ll suggest one for you — keep it or make it your own.
+            </div>
           </div>
 
           <div id="formError" class="error hidden"></div>
-          <button id="submitButton" type="submit"><span id="submitButtonText">Submit RSVP</span></button>
+
+          <button id="submitButton" type="submit">
+            <span id="submitButtonText">Submit RSVP</span>
+          </button>
+
           <div id="successMessage" class="success hidden"></div>
         </form>
 
         <section class="card">
           <h2>Who’s Coming</h2>
+
           <div id="attendeeList" class="attendees">
             <div class="attendee">
               <strong>Kayla & Cory</strong>
-              <span class="dish-title">Hosts</span> — Batched cocktails + house provisions
+              <span class="dish-title">Hosts</span>
+              — Batched cocktails + house provisions
             </div>
           </div>
         </section>
@@ -345,12 +477,22 @@
     </section>
   </div>
 
-
-  <div id="confirmationModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="confirmationTitle">
+  <div
+    id="confirmationModal"
+    class="modal-backdrop hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="confirmationTitle"
+  >
     <div class="rsvp-modal">
       <h3 id="confirmationTitle">Groovy — RSVP received!</h3>
       <p id="confirmationText">You’re on the list.</p>
-      <p><strong>Need to update your RSVP?</strong><br>Message Cory and he’ll take care of it.</p>
+
+      <p>
+        <strong>Need to update your RSVP?</strong><br>
+        Message Cory and he’ll take care of it.
+      </p>
+
       <button id="closeConfirmation" type="button">Far Out</button>
     </div>
   </div>
@@ -360,18 +502,63 @@
     const API_URL = "https://script.google.com/macros/s/AKfycbz59vPbyTRzIxrbPYSQ5Xz84TTlyXtrGNv2HsppobJ2RLLJ0qY_Zjp0Zi4zL0KpDJBV1w/exec";
 
     const APPETIZERS = [
-      { value: "deviled-eggs", label: "Deviled Eggs", title: "The Devil Made Me Do It" },
-      { value: "swedish-meatballs", label: "Swedish Meatballs", title: "Swede Dreams" },
-      { value: "shrimp-cocktail", label: "Shrimp Cocktail", title: "Shrimply Irresistible" },
-      { value: "cheese-ball", label: "Cheese Ball", title: "Stayin’ Alive Cheese Ball" },
-      { value: "stuffed-mushrooms", label: "Stuffed Mushrooms", title: "Shroom With a View" },
-      { value: "pigs-blanket", label: "Pigs in a Blanket", title: "Boogie Blankets" },
-      { value: "spinach-dip", label: "Spinach Dip", title: "Dip It Real Good" },
-      { value: "cocktail-sausages", label: "Cocktail Sausages", title: "Tiny Dancers" },
-      { value: "rumaki", label: "Rumaki", title: "Rumaki Me Crazy" },
-      { value: "fondue", label: "Cheese Fondue", title: "Fondue You Think You Are?" },
-      { value: "custom", label: "I’m bringing my own 70s classic", title: "" }
+      {
+        value: "deviled-eggs",
+        label: "Deviled Eggs",
+        title: "The Devil Made Me Do It"
+      },
+      {
+        value: "swedish-meatballs",
+        label: "Swedish Meatballs",
+        title: "Swede Dreams"
+      },
+      {
+        value: "shrimp-cocktail",
+        label: "Shrimp Cocktail",
+        title: "Shrimply Irresistible"
+      },
+      {
+        value: "cheese-ball",
+        label: "Cheese Ball",
+        title: "Stayin’ Alive Cheese Ball"
+      },
+      {
+        value: "stuffed-mushrooms",
+        label: "Stuffed Mushrooms",
+        title: "Shroom With a View"
+      },
+      {
+        value: "pigs-blanket",
+        label: "Pigs in a Blanket",
+        title: "Boogie Blankets"
+      },
+      {
+        value: "spinach-dip",
+        label: "Spinach Dip",
+        title: "Dip It Real Good"
+      },
+      {
+        value: "cocktail-sausages",
+        label: "Cocktail Sausages",
+        title: "Tiny Dancers"
+      },
+      {
+        value: "rumaki",
+        label: "Rumaki",
+        title: "Rumaki Me Crazy"
+      },
+      {
+        value: "fondue",
+        label: "Cheese Fondue",
+        title: "Fondue You Think You Are?"
+      },
+      {
+        value: "custom",
+        label: "I’m bringing my own 70s classic",
+        title: ""
+      }
     ];
+
     const form = document.getElementById('rsvpForm');
     const attendingFields = document.getElementById('attendingFields');
     const customDishFields = document.getElementById('customDishFields');
@@ -388,131 +575,254 @@
     const confirmationText = document.getElementById('confirmationText');
     const closeConfirmation = document.getElementById('closeConfirmation');
 
-
     function setSubmitting(isSubmitting) {
       submitButton.disabled = isSubmitting;
+
       if (isSubmitting) {
-        submitButton.innerHTML = '<span class="submit-spinner" aria-hidden="true"></span><span>Submitting RSVP…</span>';
+        submitButton.innerHTML =
+          '<span class="submit-spinner" aria-hidden="true"></span>' +
+          '<span>Submitting RSVP…</span>';
+
         submitButton.setAttribute('aria-busy', 'true');
       } else {
-        submitButton.innerHTML = '<span id="submitButtonText">Submit RSVP</span>';
+        submitButton.innerHTML =
+          '<span id="submitButtonText">Submit RSVP</span>';
+
         submitButton.removeAttribute('aria-busy');
       }
     }
 
     function getLocalResponses() {
-      return JSON.parse(localStorage.getItem('seventiesPartyRsvps') || '[]');
+      return JSON.parse(
+        localStorage.getItem('seventiesPartyRsvps') || '[]'
+      );
     }
 
     function saveLocalResponses(data) {
-      localStorage.setItem('seventiesPartyRsvps', JSON.stringify(data));
+      localStorage.setItem(
+        'seventiesPartyRsvps',
+        JSON.stringify(data)
+      );
     }
 
     function claimedValues(responses) {
-      return new Set(responses.filter(r => r.attending === 'yes' && r.appetizer && r.appetizer !== 'custom').map(r => r.appetizer));
+      return new Set(
+        responses
+          .filter(response =>
+            response.attending === 'yes' &&
+            response.appetizer &&
+            response.appetizer !== 'custom'
+          )
+          .map(response => response.appetizer)
+      );
     }
 
     function renderAppetizers(responses) {
       const claimed = claimedValues(responses);
-      appetizerSelect.innerHTML = '<option value="">Select one...</option>';
+
+      appetizerSelect.innerHTML =
+        '<option value="">Select one...</option>';
+
       APPETIZERS.forEach(item => {
         if (item.value === 'custom' || !claimed.has(item.value)) {
-          const opt = document.createElement('option');
-          opt.value = item.value;
-          opt.textContent = item.label;
-          appetizerSelect.appendChild(opt);
+          const option = document.createElement('option');
+
+          option.value = item.value;
+          option.textContent = item.label;
+
+          appetizerSelect.appendChild(option);
         }
       });
     }
 
     function findDishLabel(value) {
-      return APPETIZERS.find(a => a.value === value)?.label || value;
+      return APPETIZERS.find(
+        appetizer => appetizer.value === value
+      )?.label || value;
     }
 
     function renderAttendees(responses) {
-      attendeeList.querySelectorAll('.dynamic').forEach(el => el.remove());
-      responses.filter(r => r.attending === 'yes').forEach(r => {
-        const div = document.createElement('div');
-        div.className = 'attendee dynamic';
-        const dish = r.appetizer === 'custom' ? r.customDish : findDishLabel(r.appetizer);
-        div.innerHTML = `<strong>${escapeHtml(r.guestName)}</strong><span class="dish-title">${escapeHtml(r.dishTitle || dish || '')}</span>${dish ? ` — ${escapeHtml(dish)}` : ''}`;
-        attendeeList.appendChild(div);
-      });
+      attendeeList
+        .querySelectorAll('.dynamic')
+        .forEach(element => element.remove());
+
+      responses
+        .filter(response => response.attending === 'yes')
+        .forEach(response => {
+          const attendee = document.createElement('div');
+          attendee.className = 'attendee dynamic';
+
+          const dish = response.appetizer === 'custom'
+            ? response.customDish
+            : findDishLabel(response.appetizer);
+
+          attendee.innerHTML =
+            `<strong>${escapeHtml(response.guestName)}</strong>` +
+            `<span class="dish-title">` +
+            `${escapeHtml(response.dishTitle || dish || '')}` +
+            `</span>` +
+            `${dish ? ` — ${escapeHtml(dish)}` : ''}`;
+
+          attendeeList.appendChild(attendee);
+        });
     }
 
-    function escapeHtml(str='') {
-      return str.replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));
+    function escapeHtml(value = '') {
+      return value.replace(
+        /[&<>'"]/g,
+        character => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#039;',
+          '"': '&quot;'
+        })[character]
+      );
     }
 
     async function fetchResponses() {
-      if (!API_URL) return getLocalResponses();
-      const res = await fetch(API_URL);
-      if (!res.ok) throw new Error('Could not load RSVPs.');
-      return await res.json();
+      if (!API_URL) {
+        return getLocalResponses();
+      }
+
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error('Could not load RSVPs.');
+      }
+
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(
+          data.error || 'Could not load RSVPs.'
+        );
+      }
+
+      return Array.isArray(data.rsvps)
+        ? data.rsvps
+        : [];
     }
 
     async function submitResponse(payload) {
       if (!API_URL) {
         const current = getLocalResponses();
+
         current.push(payload);
         saveLocalResponses(current);
+
         return { ok: true };
       }
-      const res = await fetch(API_URL, {
+
+      const response = await fetch(API_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
         body: JSON.stringify(payload)
       });
-      if (!res.ok) throw new Error('Could not submit RSVP.');
-      return await res.json();
+
+      if (!response.ok) {
+        throw new Error('Could not submit RSVP.');
+      }
+
+      return await response.json();
     }
 
-    document.querySelectorAll('input[name="attending"]').forEach(radio => {
-      radio.addEventListener('change', () => {
-        attendingFields.classList.toggle('hidden', radio.value !== 'yes');
+    document
+      .querySelectorAll('input[name="attending"]')
+      .forEach(radio => {
+        radio.addEventListener('change', () => {
+          attendingFields.classList.toggle(
+            'hidden',
+            radio.value !== 'yes'
+          );
+        });
       });
-    });
 
     appetizerSelect.addEventListener('change', () => {
-      const selected = APPETIZERS.find(a => a.value === appetizerSelect.value);
+      const selected = APPETIZERS.find(
+        appetizer => appetizer.value === appetizerSelect.value
+      );
+
       const isCustom = appetizerSelect.value === 'custom';
-      customDishFields.classList.toggle('hidden', !isCustom);
+
+      customDishFields.classList.toggle(
+        'hidden',
+        !isCustom
+      );
+
       dishTitleInput.value = selected?.title || '';
+
       dishTitleInput.placeholder = isCustom
         ? 'Give your dish a groovy title'
         : 'Choose an appetizer for a suggested title';
-      if (isCustom) customDishInput.focus();
+
+      if (isCustom) {
+        customDishInput.focus();
+      }
     });
 
-    closeConfirmation.addEventListener('click', () => confirmationModal.classList.add('hidden'));
-    confirmationModal.addEventListener('click', e => {
-      if (e.target === confirmationModal) confirmationModal.classList.add('hidden');
+    closeConfirmation.addEventListener('click', () => {
+      confirmationModal.classList.add('hidden');
     });
 
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
+    confirmationModal.addEventListener('click', event => {
+      if (event.target === confirmationModal) {
+        confirmationModal.classList.add('hidden');
+      }
+    });
+
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+
       errorBox.classList.add('hidden');
       successBox.classList.add('hidden');
 
-      const fd = new FormData(form);
-      const attending = fd.get('attending');
+      const formData = new FormData(form);
+      const attending = formData.get('attending');
+
       const payload = {
-        guestName: (fd.get('guestName') || '').trim(),
+        guestName: (formData.get('guestName') || '').trim(),
         attending,
         guestCount: '1',
-        appetizer: fd.get('appetizer') || '',
-        customDish: (fd.get('customDish') || '').trim(),
-        dishTitle: (fd.get('dishTitle') || '').trim(),
+        appetizer: formData.get('appetizer') || '',
+        customDish: (formData.get('customDish') || '').trim(),
+        dishTitle: (formData.get('dishTitle') || '').trim(),
         submittedAt: new Date().toISOString()
       };
 
       const errors = [];
-      if (!payload.guestName) errors.push('Please enter your name.');
-      if (!attending) errors.push('Please let us know whether you are attending.');
+
+      if (!payload.guestName) {
+        errors.push('Please enter your name.');
+      }
+
+      if (!attending) {
+        errors.push(
+          'Please let us know whether you are attending.'
+        );
+      }
+
       if (attending === 'yes') {
-        if (!payload.appetizer) errors.push('Please choose an appetizer.');
-        if (payload.appetizer === 'custom' && !payload.customDish) errors.push('Please tell us what 70s classic you are bringing.');
-        if (!payload.dishTitle) errors.push('Please give your dish a groovy title.');
+        if (!payload.appetizer) {
+          errors.push('Please choose an appetizer.');
+        }
+
+        if (
+          payload.appetizer === 'custom' &&
+          !payload.customDish
+        ) {
+          errors.push(
+            'Please tell us what 70s classic you are bringing.'
+          );
+        }
+
+        if (!payload.dishTitle) {
+          errors.push(
+            'Please give your dish a groovy title.'
+          );
+        }
       }
 
       if (errors.length) {
@@ -525,38 +835,63 @@
 
       try {
         const current = await fetchResponses();
-        if (attending === 'yes' && payload.appetizer !== 'custom' && claimedValues(current).has(payload.appetizer)) {
-          errorBox.textContent = 'That appetizer was just claimed by someone else. Please choose another.';
+
+        if (
+          attending === 'yes' &&
+          payload.appetizer !== 'custom' &&
+          claimedValues(current).has(payload.appetizer)
+        ) {
+          errorBox.textContent =
+            'That appetizer was just claimed by someone else. ' +
+            'Please choose another.';
+
           errorBox.classList.remove('hidden');
           renderAppetizers(current);
           setSubmitting(false);
+
           return;
         }
 
         await submitResponse(payload);
+
         const updated = await fetchResponses();
+
         renderAppetizers(updated);
         renderAttendees(updated);
+
         form.reset();
         attendingFields.classList.add('hidden');
         customDishFields.classList.add('hidden');
-        confirmationTitle.textContent = attending === 'yes' ? 'Groovy — RSVP received!' : 'Thanks for letting us know!';
-        confirmationText.textContent = attending === 'yes' ? 'You’re officially on the guest list.' : 'We’ll miss you at the party.';
+
+        confirmationTitle.textContent =
+          attending === 'yes'
+            ? 'Groovy — RSVP received!'
+            : 'Thanks for letting us know!';
+
+        confirmationText.textContent =
+          attending === 'yes'
+            ? 'You’re officially on the guest list.'
+            : 'We’ll miss you at the party.';
+
         confirmationModal.classList.remove('hidden');
-      } catch (err) {
-        errorBox.textContent = err.message || 'Something went wrong. Please try again.';
+      } catch (error) {
+        errorBox.textContent =
+          error.message ||
+          'Something went wrong. Please try again.';
+
         errorBox.classList.remove('hidden');
       } finally {
         setSubmitting(false);
       }
     });
 
-    (async function init() {
+    (async function initializePage() {
       try {
         const responses = await fetchResponses();
+
         renderAppetizers(responses);
         renderAttendees(responses);
-      } catch (err) {
+      } catch (error) {
         renderAppetizers([]);
       }
     })();
