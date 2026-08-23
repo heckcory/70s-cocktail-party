@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>70s Cocktail Party RSVP</title>
+  <style>
+    :root {
+      --cream: #f7e7c6;
+      --paper: #f2d9a6;
+      --brown: #3b1f12;
+      --orange: #d94b0b;
+      --burnt: #b93a08;
+      --mustard: #d99a16;
+      --gold: #e8b43b;
+      --rust: #8c2f14;
+      --ink: #2a180f;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,.25), transparent 25%),
+        repeating-linear-gradient(135deg, rgba(86,41,17,.035) 0 2px, transparent 2px 7px),
+        var(--cream);
+    }
+
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+    }
+
+    .poster {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,246,221,.9);
+      border: 8px solid var(--brown);
+      border-radius: 36px;
+      box-shadow: 0 18px 50px rgba(53,28,15,.18);
+    }
+
+    .poster::before,
+    .poster::after {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 110px;
+      background: linear-gradient(90deg, var(--orange) 0 25%, #ef7719 25% 50%, var(--mustard) 50% 75%, var(--brown) 75% 100%);
+      border-radius: 60px;
+      z-index: 0;
+    }
+    .poster::before { top: -40px; left: -120px; transform: rotate(-3deg); }
+    .poster::after { bottom: 30px; right: -140px; transform: rotate(7deg); }
+
+    .inner {
+      position: relative;
+      z-index: 1;
+      margin: 10px;
+      border: 4px solid var(--mustard);
+      border-radius: 28px;
+      padding: 34px 26px 28px;
+    }
+
+    .eyebrow { text-align: center; letter-spacing: .16em; font-weight: 700; color: var(--rust); text-transform: uppercase; }
+    h1 {
+      text-align: center;
+      font-family: 'Trebuchet MS', Arial, sans-serif;
+      font-size: clamp(48px, 10vw, 92px);
+      line-height: .84;
+      margin: 12px 0 18px;
+      letter-spacing: -.04em;
+      text-transform: uppercase;
+      color: var(--brown);
+      text-shadow: 3px 3px 0 var(--gold);
+    }
+    h1 span { color: var(--orange); display: block; }
+
+    .details {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: clamp(20px, 3.2vw, 34px);
+      line-height: 1.25;
+      margin-bottom: 22px;
+    }
+    .details .address { font-size: .62em; letter-spacing: .04em; margin-top: 8px; }
+
+    .intro {
+      max-width: 700px;
+      margin: 0 auto 26px;
+      font-size: 18px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    .callout {
+      background: var(--brown);
+      color: var(--cream);
+      border: 3px solid var(--gold);
+      border-radius: 22px;
+      padding: 16px 18px;
+      text-align: center;
+      margin: 24px auto 30px;
+      max-width: 760px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .callout small { display:block; margin-top:6px; text-transform:none; letter-spacing:0; font-weight:600; font-family: Georgia, serif; font-style: italic; color:#f1c76f; }
+
+    .card {
+      max-width: 760px;
+      margin: 0 auto 26px;
+      background: rgba(255,252,242,.95);
+      border: 3px solid var(--brown);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 8px 8px 0 rgba(217,154,22,.25);
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      color: var(--burnt);
+      font-size: 28px;
+      letter-spacing: .02em;
+    }
+
+    label { font-weight: 700; display:block; margin: 16px 0 8px; }
+    input, select, textarea, button {
+      width: 100%;
+      font: inherit;
+      border-radius: 12px;
+      border: 2px solid #7d4b2d;
+      padding: 12px 14px;
+      background: #fffaf0;
+      color: var(--ink);
+    }
+    textarea { min-height: 100px; resize: vertical; }
+
+    .choice-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .choice {
+      border: 2px solid #7d4b2d;
+      border-radius: 14px;
+      padding: 14px;
+      background: #fff7e9;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .choice input { width: auto; margin-right: 8px; }
+
+    .hidden { display:none; }
+    .hint { font-size: 14px; color:#6d4a37; margin-top:6px; }
+    .error { color:#8b1e11; font-weight:700; margin-top:10px; }
+
+    button {
+      margin-top: 22px;
+      background: var(--orange);
+      color: #fff7e6;
+      border-color: var(--brown);
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(.96); }
+
+    .attendees {
+      display:grid;
+      gap:12px;
+    }
+    .attendee {
+      border-left: 8px solid var(--mustard);
+      padding: 12px 14px;
+      background:#fff8eb;
+      border-radius: 8px;
+    }
+    .attendee strong { display:block; font-family:Arial, sans-serif; }
+    .dish-title { color:var(--burnt); font-style:italic; }
+
+    .success {
+      border: 3px solid #6a7f2c;
+      background:#f2f3d9;
+      padding:18px;
+      border-radius:14px;
+      font-weight:700;
+      margin-top:18px;
+    }
+
+    button[type="submit"] {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+    }
+
+    button[type="submit"]:disabled {
+      cursor:wait;
+      opacity:.8;
+    }
+
+    .submit-spinner {
+      width:18px;
+      height:18px;
+      border:3px solid rgba(255,255,255,.45);
+      border-top-color:#fff;
+      border-radius:50%;
+      animation:spin .7s linear infinite;
+      flex:0 0 auto;
+    }
+
+    @keyframes spin {
+      to { transform:rotate(360deg); }
+    }
+
+    .footer-note { text-align:center; font-size:13px; color:#6e4f3f; margin-top:22px; }
+
+    @media (max-width: 640px) {
+      .inner { padding: 28px 16px 22px; }
+      .choice-row { grid-template-columns: 1fr; }
+      .card { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="poster">
+      <div class="inner">
+        <div class="eyebrow">You’re invited</div>
+        <h1><span>70s</span> Cocktail Party</h1>
+
+        <div class="details">
+          November 14 • 5:30 PM
+          <div class="address">2513 Somerset Drive<br>Nashville, TN 37217</div>
+        </div>
+
+        <div class="intro">
+          Break out the bell-bottoms and dust off the fondue pot. Kayla and Cory are hosting an evening of retro bites, vintage vibes, and batched cocktails. Bring one classic appetizer and give it a groovy title.
+        </div>
+
+        <div class="callout">
+          Bring a classic appetizer
+          <small>RSVP & Sign Up Below</small>
+        </div>
+
+        <form id="rsvpForm" class="card" novalidate>
+          <h2>RSVP</h2>
+
+          <label for="guestName">Your name</label>
+          <input id="guestName" name="guestName" type="text" required />
+
+          <label>Will you be joining us?</label>
+          <div class="choice-row">
+            <label class="choice"><input type="radio" name="attending" value="yes" required /> Far out! I’ll be there.</label>
+            <label class="choice"><input type="radio" name="attending" value="no" required /> Bummer. Can’t make it.</label>
+          </div>
+
+          <div id="attendingFields" class="hidden">
+            <label for="appetizer">Choose your appetizer</label>
+            <select id="appetizer" name="appetizer">
+              <option value="">Select one...</option>
+            </select>
+            <div class="hint">Claimed appetizers disappear from this list after someone RSVPs.</div>
+
+            <div id="customDishFields" class="hidden">
+              <label for="customDish">What are you bringing?</label>
+              <input id="customDish" name="customDish" type="text" placeholder="e.g. Rumaki" />
+            </div>
+
+            <label for="dishTitle">Give your dish a groovy title</label>
+            <input id="dishTitle" name="dishTitle" type="text" placeholder="e.g. The Devil Made Me Do It" />
+          </div>
+
+          <div id="formError" class="error hidden"></div>
+          <button id="submitButton" type="submit"><span id="submitButtonText">Submit RSVP</span></button>
+          <div id="successMessage" class="success hidden"></div>
+        </form>
+
+        <section class="card">
+          <h2>Who’s Coming</h2>
+          <div id="attendeeList" class="attendees">
+            <div class="attendee">
+              <strong>Kayla & Cory</strong>
+              <span class="dish-title">Hosts</span> — Batched cocktails + house provisions
+            </div>
+          </div>
+        </section>
+
+        <div class="footer-note">
+          Pick your appetizer before somebody else claims it. Groovy choices are first come, first served.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Replace with your deployed Google Apps Script Web App URL.
+    const API_URL = "https://script.google.com/macros/s/AKfycbz59vPbyTRzIxrbPYSQ5Xz84TTlyXtrGNv2HsppobJ2RLLJ0qY_Zjp0Zi4zL0KpDJBV1w/exec";
+
+    const APPETIZERS = [
+      { value: "deviled-eggs", label: "Deviled Eggs — The Devil Made Me Do It" },
+      { value: "swedish-meatballs", label: "Swedish Meatballs — Swede Dreams" },
+      { value: "shrimp-cocktail", label: "Shrimp Cocktail — Shrimply Irresistible" },
+      { value: "cheese-ball", label: "Cheese Ball — Stayin’ Alive Cheese Ball" },
+      { value: "stuffed-mushrooms", label: "Stuffed Mushrooms — Shroom With a View" },
+      { value: "pigs-blanket", label: "Pigs in a Blanket — Boogie Blankets" },
+      { value: "spinach-dip", label: "Spinach Dip — Dip It Real Good" },
+      { value: "cocktail-sausages", label: "Cocktail Sausages — Tiny Dancers" },
+      { value: "rumaki", label: "Rumaki — Rumaki Me Crazy" },
+      { value: "fondue", label: "Cheese Fondue — Fondue You Think You Are?" },
+      { value: "custom", label: "I’m bringing my own 70s classic" }
+    ];
+
+    const form = document.getElementById('rsvpForm');
+    const attendingFields = document.getElementById('attendingFields');
+    const customDishFields = document.getElementById('customDishFields');
+    const appetizerSelect = document.getElementById('appetizer');
+    const attendeeList = document.getElementById('attendeeList');
+    const errorBox = document.getElementById('formError');
+    const successBox = document.getElementById('successMessage');
+    const submitButton = document.getElementById('submitButton');
+    const submitButtonText = document.getElementById('submitButtonText');
+
+
+    function setSubmitting(isSubmitting) {
+      submitButton.disabled = isSubmitting;
+      if (isSubmitting) {
+        submitButton.innerHTML = '<span class="submit-spinner" aria-hidden="true"></span><span>Submitting RSVP…</span>';
+        submitButton.setAttribute('aria-busy', 'true');
+      } else {
+        submitButton.innerHTML = '<span id="submitButtonText">Submit RSVP</span>';
+        submitButton.removeAttribute('aria-busy');
+      }
+    }
+
+    function getLocalResponses() {
+      return JSON.parse(localStorage.getItem('seventiesPartyRsvps') || '[]');
+    }
+
+    function saveLocalResponses(data) {
+      localStorage.setItem('seventiesPartyRsvps', JSON.stringify(data));
+    }
+
+    function claimedValues(responses) {
+      return new Set(responses.filter(r => r.attending === 'yes' && r.appetizer && r.appetizer !== 'custom').map(r => r.appetizer));
+    }
+
+    function renderAppetizers(responses) {
+      const claimed = claimedValues(responses);
+      appetizerSelect.innerHTML = '<option value="">Select one...</option>';
+      APPETIZERS.forEach(item => {
+        if (item.value === 'custom' || !claimed.has(item.value)) {
+          const opt = document.createElement('option');
+          opt.value = item.value;
+          opt.textContent = item.label;
+          appetizerSelect.appendChild(opt);
+        }
+      });
+    }
+
+    function findDishLabel(value) {
+      return APPETIZERS.find(a => a.value === value)?.label.split(' — ')[0] || value;
+    }
+
+    function renderAttendees(responses) {
+      attendeeList.querySelectorAll('.dynamic').forEach(el => el.remove());
+      responses.filter(r => r.attending === 'yes').forEach(r => {
+        const div = document.createElement('div');
+        div.className = 'attendee dynamic';
+        const dish = r.appetizer === 'custom' ? r.customDish : findDishLabel(r.appetizer);
+        div.innerHTML = `<strong>${escapeHtml(r.guestName)}</strong><span class="dish-title">${escapeHtml(r.dishTitle || dish || '')}</span>${dish ? ` — ${escapeHtml(dish)}` : ''}`;
+        attendeeList.appendChild(div);
+      });
+    }
+
+    function escapeHtml(str='') {
+      return str.replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#039;','"':'&quot;'}[c]));
+    }
+
+    async function fetchResponses() {
+      if (!API_URL) return getLocalResponses();
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error('Could not load RSVPs.');
+      return await res.json();
+    }
+
+    async function submitResponse(payload) {
+      if (!API_URL) {
+        const current = getLocalResponses();
+        current.push(payload);
+        saveLocalResponses(current);
+        return { ok: true };
+      }
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('Could not submit RSVP.');
+      return await res.json();
+    }
+
+    document.querySelectorAll('input[name="attending"]').forEach(radio => {
+      radio.addEventListener('change', () => {
+        attendingFields.classList.toggle('hidden', radio.value !== 'yes');
+      });
+    });
+
+    appetizerSelect.addEventListener('change', () => {
+      customDishFields.classList.toggle('hidden', appetizerSelect.value !== 'custom');
+    });
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      errorBox.classList.add('hidden');
+      successBox.classList.add('hidden');
+
+      const fd = new FormData(form);
+      const attending = fd.get('attending');
+      const payload = {
+        guestName: (fd.get('guestName') || '').trim(),
+        attending,
+        guestCount: '1',
+        appetizer: fd.get('appetizer') || '',
+        customDish: (fd.get('customDish') || '').trim(),
+        dishTitle: (fd.get('dishTitle') || '').trim(),
+        submittedAt: new Date().toISOString()
+      };
+
+      const errors = [];
+      if (!payload.guestName) errors.push('Please enter your name.');
+      if (!attending) errors.push('Please let us know whether you are attending.');
+      if (attending === 'yes') {
+        if (!payload.appetizer) errors.push('Please choose an appetizer.');
+        if (payload.appetizer === 'custom' && !payload.customDish) errors.push('Please tell us what 70s classic you are bringing.');
+        if (!payload.dishTitle) errors.push('Please give your dish a groovy title.');
+      }
+
+      if (errors.length) {
+        errorBox.textContent = errors.join(' ');
+        errorBox.classList.remove('hidden');
+        return;
+      }
+
+      setSubmitting(true);
+
+      try {
+        const current = await fetchResponses();
+        if (attending === 'yes' && payload.appetizer !== 'custom' && claimedValues(current).has(payload.appetizer)) {
+          errorBox.textContent = 'That appetizer was just claimed by someone else. Please choose another.';
+          errorBox.classList.remove('hidden');
+          renderAppetizers(current);
+          setSubmitting(false);
+          return;
+        }
+
+        await submitResponse(payload);
+        const updated = await fetchResponses();
+        renderAppetizers(updated);
+        renderAttendees(updated);
+        form.reset();
+        attendingFields.classList.add('hidden');
+        customDishFields.classList.add('hidden');
+        successBox.textContent = attending === 'yes' ? 'Groovy — you’re on the list!' : 'Thanks for letting us know. We’ll miss you!';
+        successBox.classList.remove('hidden');
+      } catch (err) {
+        errorBox.textContent = err.message || 'Something went wrong. Please try again.';
+        errorBox.classList.remove('hidden');
+      } finally {
+        setSubmitting(false);
+      }
+    });
+
+    (async function init() {
+      try {
+        const responses = await fetchResponses();
+        renderAppetizers(responses);
+        renderAttendees(responses);
+      } catch (err) {
+        renderAppetizers([]);
+      }
+    })();
+  </script>
+</body>
+</html>
