@@ -234,6 +234,43 @@
       .choice-row { grid-template-columns: 1fr; }
       .card { padding: 18px; }
     }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(42,24,15,.62);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+    .modal-backdrop.hidden { display: none; }
+    .rsvp-modal {
+      width: min(92vw, 460px);
+      background: #fff6dd;
+      border: 5px solid var(--brown);
+      border-radius: 26px;
+      padding: 28px 24px 22px;
+      text-align: center;
+      box-shadow: 0 22px 70px rgba(42,24,15,.35);
+    }
+    .rsvp-modal h3 {
+      margin: 0 0 10px;
+      font-size: 1.75rem;
+      color: var(--burnt);
+    }
+    .rsvp-modal p { margin: 8px 0 18px; line-height: 1.45; }
+    .rsvp-modal button {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 24px;
+      background: var(--brown);
+      color: var(--cream);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -282,7 +319,8 @@
             </div>
 
             <label for="dishTitle">Give your dish a groovy title</label>
-            <input id="dishTitle" name="dishTitle" type="text" placeholder="e.g. The Devil Made Me Do It" />
+            <input id="dishTitle" name="dishTitle" type="text" placeholder="Choose an appetizer for a suggested title" />
+            <div class="hint">We’ll suggest one for you — keep it or make it your own.</div>
           </div>
 
           <div id="formError" class="error hidden"></div>
@@ -307,24 +345,33 @@
     </section>
   </div>
 
+
+  <div id="confirmationModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="confirmationTitle">
+    <div class="rsvp-modal">
+      <h3 id="confirmationTitle">Groovy — RSVP received!</h3>
+      <p id="confirmationText">You’re on the list.</p>
+      <p><strong>Need to update your RSVP?</strong><br>Message Cory and he’ll take care of it.</p>
+      <button id="closeConfirmation" type="button">Far Out</button>
+    </div>
+  </div>
+
   <script>
     // Replace with your deployed Google Apps Script Web App URL.
     const API_URL = "https://script.google.com/macros/s/AKfycbz59vPbyTRzIxrbPYSQ5Xz84TTlyXtrGNv2HsppobJ2RLLJ0qY_Zjp0Zi4zL0KpDJBV1w/exec";
 
     const APPETIZERS = [
-      { value: "deviled-eggs", label: "Deviled Eggs — The Devil Made Me Do It" },
-      { value: "swedish-meatballs", label: "Swedish Meatballs — Swede Dreams" },
-      { value: "shrimp-cocktail", label: "Shrimp Cocktail — Shrimply Irresistible" },
-      { value: "cheese-ball", label: "Cheese Ball — Stayin’ Alive Cheese Ball" },
-      { value: "stuffed-mushrooms", label: "Stuffed Mushrooms — Shroom With a View" },
-      { value: "pigs-blanket", label: "Pigs in a Blanket — Boogie Blankets" },
-      { value: "spinach-dip", label: "Spinach Dip — Dip It Real Good" },
-      { value: "cocktail-sausages", label: "Cocktail Sausages — Tiny Dancers" },
-      { value: "rumaki", label: "Rumaki — Rumaki Me Crazy" },
-      { value: "fondue", label: "Cheese Fondue — Fondue You Think You Are?" },
-      { value: "custom", label: "I’m bringing my own 70s classic" }
+      { value: "deviled-eggs", label: "Deviled Eggs", title: "The Devil Made Me Do It" },
+      { value: "swedish-meatballs", label: "Swedish Meatballs", title: "Swede Dreams" },
+      { value: "shrimp-cocktail", label: "Shrimp Cocktail", title: "Shrimply Irresistible" },
+      { value: "cheese-ball", label: "Cheese Ball", title: "Stayin’ Alive Cheese Ball" },
+      { value: "stuffed-mushrooms", label: "Stuffed Mushrooms", title: "Shroom With a View" },
+      { value: "pigs-blanket", label: "Pigs in a Blanket", title: "Boogie Blankets" },
+      { value: "spinach-dip", label: "Spinach Dip", title: "Dip It Real Good" },
+      { value: "cocktail-sausages", label: "Cocktail Sausages", title: "Tiny Dancers" },
+      { value: "rumaki", label: "Rumaki", title: "Rumaki Me Crazy" },
+      { value: "fondue", label: "Cheese Fondue", title: "Fondue You Think You Are?" },
+      { value: "custom", label: "I’m bringing my own 70s classic", title: "" }
     ];
-
     const form = document.getElementById('rsvpForm');
     const attendingFields = document.getElementById('attendingFields');
     const customDishFields = document.getElementById('customDishFields');
@@ -334,6 +381,12 @@
     const successBox = document.getElementById('successMessage');
     const submitButton = document.getElementById('submitButton');
     const submitButtonText = document.getElementById('submitButtonText');
+    const dishTitleInput = document.getElementById('dishTitle');
+    const customDishInput = document.getElementById('customDish');
+    const confirmationModal = document.getElementById('confirmationModal');
+    const confirmationTitle = document.getElementById('confirmationTitle');
+    const confirmationText = document.getElementById('confirmationText');
+    const closeConfirmation = document.getElementById('closeConfirmation');
 
 
     function setSubmitting(isSubmitting) {
@@ -373,7 +426,7 @@
     }
 
     function findDishLabel(value) {
-      return APPETIZERS.find(a => a.value === value)?.label.split(' — ')[0] || value;
+      return APPETIZERS.find(a => a.value === value)?.label || value;
     }
 
     function renderAttendees(responses) {
@@ -421,7 +474,19 @@
     });
 
     appetizerSelect.addEventListener('change', () => {
-      customDishFields.classList.toggle('hidden', appetizerSelect.value !== 'custom');
+      const selected = APPETIZERS.find(a => a.value === appetizerSelect.value);
+      const isCustom = appetizerSelect.value === 'custom';
+      customDishFields.classList.toggle('hidden', !isCustom);
+      dishTitleInput.value = selected?.title || '';
+      dishTitleInput.placeholder = isCustom
+        ? 'Give your dish a groovy title'
+        : 'Choose an appetizer for a suggested title';
+      if (isCustom) customDishInput.focus();
+    });
+
+    closeConfirmation.addEventListener('click', () => confirmationModal.classList.add('hidden'));
+    confirmationModal.addEventListener('click', e => {
+      if (e.target === confirmationModal) confirmationModal.classList.add('hidden');
     });
 
     form.addEventListener('submit', async e => {
@@ -475,8 +540,9 @@
         form.reset();
         attendingFields.classList.add('hidden');
         customDishFields.classList.add('hidden');
-        successBox.textContent = attending === 'yes' ? 'Groovy — you’re on the list!' : 'Thanks for letting us know. We’ll miss you!';
-        successBox.classList.remove('hidden');
+        confirmationTitle.textContent = attending === 'yes' ? 'Groovy — RSVP received!' : 'Thanks for letting us know!';
+        confirmationText.textContent = attending === 'yes' ? 'You’re officially on the guest list.' : 'We’ll miss you at the party.';
+        confirmationModal.classList.remove('hidden');
       } catch (err) {
         errorBox.textContent = err.message || 'Something went wrong. Please try again.';
         errorBox.classList.remove('hidden');
