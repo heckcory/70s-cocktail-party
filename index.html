@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PARTY POSTPONED - 70s Cocktail Party</title>
+  <title>Kayla’s Birthday · A 70s Christmas Cocktail Party</title>
   <style>
     :root {
       --cream: #f7e7c6;
@@ -369,42 +369,34 @@
       cursor: pointer;
     }
 
-    /* Temporary postponement notice; remove this block and banner to restore. */
-    body > .wrap { opacity: .22; }
-    .postponement-overlay {
-      position: fixed; inset: 0; z-index: 10000;
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px; pointer-events: none;
-    }
-    .postponement-notice {
-      width: min(100%, 1080px); margin: 0; padding: 30px 24px;
-      color: #bd151b; background: rgba(255,248,230,.96);
-      border-top: 6px solid currentColor; border-bottom: 6px solid currentColor;
-      box-shadow: 0 12px 45px rgba(59,31,18,.12);
-      font-family: Arial, Helvetica, sans-serif; font-weight: 900;
-      text-align: center; text-transform: uppercase;
-      font-size: clamp(32px, 6vw, 76px); line-height: 1.08;
-      letter-spacing: -.025em;
-    }
-    .postponement-notice span { display: block; margin-top: 14px; font-size: .48em; letter-spacing: .035em; }
-    @media(max-width: 480px) {
-      .postponement-overlay { padding: 16px; }
-      .postponement-notice { padding: 26px 12px; }
-    }
+    :root { --orange:#a63e32; --burnt:#92372d; --rust:#375745; --evergreen:#294e3d; }
+    .eyebrow { color:var(--evergreen); font-size:13px; }
+    h1 { font-size:clamp(42px,9vw,78px); line-height:.98; margin-bottom:12px; }
+    h1 span { font-size:.55em; letter-spacing:.05em; margin-bottom:10px; }
+    .birthday { text-align:center; color:var(--evergreen); font-style:italic; font-size:clamp(23px,4vw,34px); margin:10px 0 22px; }
+    .ornaments { display:flex; justify-content:center; gap:22px; height:64px; margin:0 0 18px; }
+    .ornaments i { display:block; width:38px; height:38px; border-radius:50%; background:var(--mustard); position:relative; margin-top:18px; border:3px solid var(--brown); }
+    .ornaments i:before { content:''; position:absolute; width:2px; height:19px; background:var(--brown); top:-20px; left:15px; }
+    .ornaments i:nth-child(2) { background:var(--evergreen); margin-top:5px; }
+    .ornaments i:nth-child(3) { background:var(--orange); }
+    .rescheduled { text-align:center; margin:0 auto 18px; font:700 12px Arial,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--evergreen); }
+    .callout { background:var(--evergreen); }
+    .reconfirm { font-size:14px; line-height:1.5; padding:12px 14px; border-left:4px solid var(--mustard); background:#f7edda; }
+    @media(max-width:480px) { .wrap { padding:14px 10px 32px; } .poster { border-width:5px; } .inner { margin:6px; padding:24px 12px; } h1 { font-size:42px; } }
   </style>
 </head>
 <body>
-  <div class="postponement-overlay">
-    <div class="postponement-notice" role="status" aria-label="PARTY POSTPONED - DATE TO BE DETERMINED">PARTY POSTPONED<span>DATE TO BE DETERMINED</span></div>
-  </div>
-  <div class="wrap">
+<div class="wrap">
     <section class="poster">
       <div class="inner">
-        <div class="eyebrow">You’re invited</div>
-        <h1><span>70s</span> Cocktail Party</h1>
+        <div class="eyebrow">A little retro &middot; A little merry</div>
+<div class="ornaments" aria-hidden="true"><i></i><i></i><i></i></div>
+<h1><span>A 70s Christmas</span>Cocktail Party</h1>
+<div class="birthday">Celebrating Kayla&#8217;s Birthday</div>
+<div class="rescheduled">New date &middot; Same groovy spirit</div>
 
         <div class="details">
-          November 14 • 5:30 PM
+          Saturday, December 12, 2026<br>4:30 PM
           <div class="address">
             2513 Somerset Drive<br>
             Nashville, TN 37217
@@ -412,16 +404,16 @@
         </div>
 
         <div class="intro">
-          Break out the bell-bottoms and dust off the fondue pot. Kayla and Cory are hosting an evening of retro bites, vintage vibes, and batched cocktails. Bring one classic appetizer and give it a groovy title.
+          Break out the bell-bottoms and add a little holiday sparkle. Join Kayla and Cory for a festive 70s cocktail party celebrating Christmas time and Kayla’s birthday. Expect retro bites, vintage vibes, and batched cocktails. Bring one classic appetizer and give it a groovy title.
         </div>
 
         <div class="callout">
           Bring a classic appetizer
-          <small>RSVP & Sign Up Below</small>
+          <small>70s cocktail attire, with a festive twist · RSVP & sign up below</small>
         </div>
 
         <form id="rsvpForm" class="card" novalidate>
-          <h2>RSVP</h2>
+          <h2>RSVP</h2><p class="reconfirm">Already signed up for the original date? Your RSVP and appetizer selection are still saved. Please message Cory to confirm December 12 or update your plans.</p>
 
           <label for="guestName">Your name</label>
           <input id="guestName" name="guestName" type="text" required />
@@ -487,8 +479,8 @@
         <section class="card">
           <h2>Who’s Coming</h2>
 
-          <div id="attendeeList" class="attendees">
-        </section>
+          <div id="attendeeList" class="attendees"></div>
+</section>
 
         <div class="footer-note">
           Pick your appetizer before somebody else claims it. Groovy choices are first come, first served.
